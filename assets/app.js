@@ -24,8 +24,11 @@ app.factory('Housie', function() {
                 tableBody += rowStart;
 
                 for( var cell = 1; cell <= 10; cell++ ) {
+                    if(cellId==90) {
+                        break;
+                    }
                     cellId = cellId + 1;
-                    tableBody += "<td width='10%' data-ng-model='ele-"+cellId+"'>"+cellId+"</td>";
+                    tableBody += "<td width='10%' id='ele_"+cellId+"'>"+cellId+"</td>";
                 }
 
                 tableBody += rowEnd;
@@ -36,6 +39,16 @@ app.factory('Housie', function() {
 
         drawNumber: function(min, max) {
             return Math.round(Math.random() * (max - min) + min);
+        },
+
+        markCell: function(cell) {
+            var cellMark = angular.element(document.querySelector('#ele_'+cell))
+            cellMark.addClass('alert alert-success');
+            return;
+        },
+
+        checkNumber: function(n) {
+
         }
     }
 });
@@ -44,11 +57,14 @@ app.controller('HomeCtrl', function($scope, Housie, $sce) {
 
     $scope.init = function() {
         $scope.board = $sce.trustAsHtml(Housie.generateBoard());
+
     }
 
     $scope.draw = function() {
-        $scope.currentNumber = Housie.drawNumber(1, 100);
-        console.log($scope.currentNumber);
+        $scope.currentNumber = Housie.drawNumber(1, 90);
+        Housie.markCell($scope.currentNumber);
     }
+
+
 });
 

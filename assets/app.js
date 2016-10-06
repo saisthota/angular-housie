@@ -42,8 +42,8 @@ app.factory('Housie', function() {
         },
 
         markCell: function(cell) {
-            var cellMark = angular.element(document.querySelector('#ele_'+cell))
-            cellMark.addClass('alert alert-success');
+            var currentCell = angular.element(document.querySelector('#ele_'+cell))
+            currentCell.addClass('alert alert-success');
             return;
         },
 

@@ -12,9 +12,43 @@ app.config(['$routeProvider',
         })
 }]);
 
-app.controller('HomeCtrl', function($scope) {
+app.factory('Housie', function() {
+    return {
+        generateBoard: function() {
+            var tableBody = "<table class='table table-bordered table-'>\n";
+            var rowStart = "\n<tr>\n";
+            var rowEnd = "\n</tr>";
+            var cellId = 0;
 
-    $scope.init = function() {
-        //Initialize 10x10 table here
+            for( var row = 1; row <= 10; row++ ) {
+                tableBody += rowStart;
+
+                for( var cell = 1; cell <= 10; cell++ ) {
+                    cellId = cellId + 1;
+                    tableBody += "<td width='10%' data-ng-model='ele-"+cellId+"'>"+cellId+"</td>";
+                }
+
+                tableBody += rowEnd;
+            }
+            tableBody += "</table>";
+            return tableBody;
+        },
+
+        drawNumber: function(min, max) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
     }
 });
+
+app.controller('HomeCtrl', function($scope, Housie, $sce) {
+
+    $scope.init = function() {
+        $scope.board = $sce.trustAsHtml(Housie.generateBoard());
+    }
+
+    $scope.draw = function() {
+        $scope.currentNumber = Housie.drawNumber(1, 100);
+        console.log($scope.currentNumber);
+    }
+});
+

@@ -1,1 +1,6 @@
-body {background:#FFF}
+/*@import 'https://fonts.googleapis.com/css?family=Rajdhani';*/
+body {background:#FFF;font-family:'Rajdhani', Arial}
+h1 {font-weight:700}
+.table {font-size:30px; font-weight:bold;text-align:center;}
+.draw {background:#ac2925; color: #ce8483}
+.draw-btn {background:#ac2925;border:medium none;display:inline-block;}

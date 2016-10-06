@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Housie</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="assets/app.js"></script>
 </head>
 <body>
-
+<div class="container">
+        <data-ng-view></data-ng-view>
+</div>
 </body>
 </html>

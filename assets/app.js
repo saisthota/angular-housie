@@ -6,9 +6,14 @@ var app = angular.module('housieApp', ['ngRoute']);
 
 app.config(['$routeProvider',
     function($routeProvider) {
-        $routeProvider.when('/', {
+        $routeProvider
+        .when('/', {
             templateUrl: 'partials/home.html',
             controller: 'HomeCtrl'
+        })
+        .when('/GenerateTickets', {
+            templateUrl: 'partials/tickets.html',
+            controller: 'TicketsCtrl'
         })
 }]);
 
@@ -42,13 +47,9 @@ app.factory('Housie', function() {
         },
 
         markCell: function(cell) {
-            var currentCell = angular.element(document.querySelector('#ele_'+cell))
+            var currentCell = angular.element(document.querySelector('#ele_' + cell))
             currentCell.addClass('alert alert-success');
             return;
-        },
-
-        checkNumber: function(n) {
-
         }
     }
 });

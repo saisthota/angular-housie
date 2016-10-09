@@ -17,9 +17,8 @@ app.config(['$routeProvider',
         })
 }]);
 
-app.factory('Housie', function() {
-    return {
-        generateBoard: function() {
+app.service('Housie', function() {
+        this.generateBoard = function() {
             var tableBody = "<table class='table table-bordered table-'>\n";
             var rowStart = "\n<tr>\n";
             var rowEnd = "\n</tr>";
@@ -40,22 +39,26 @@ app.factory('Housie', function() {
             }
             tableBody += "</table>";
             return tableBody;
-        },
+        }
 
-        drawNumber: function(min, max) {
+        this.drawNumber = function(min, max) {
             return Math.round(Math.random() * (max - min) + min);
-        },
+        }
 
-        markCell: function(cell) {
+        this.testFn = function() {
+            console.log("Function call test");
+        }
+
+        this.markCell = function(cell) {
             var currentCell = angular.element(document.querySelector('#ele_' + cell))
             currentCell.addClass('alert alert-success');
+            this.testFn();
             return;
         }
-    }
 });
 
-app.controller('HomeCtrl', function($scope, Housie, $sce) {
 
+app.controller('HomeCtrl', function($scope, Housie, $sce) {
     $scope.init = function() {
         $scope.board = $sce.trustAsHtml(Housie.generateBoard());
 
@@ -65,7 +68,4 @@ app.controller('HomeCtrl', function($scope, Housie, $sce) {
         $scope.currentNumber = Housie.drawNumber(1, 90);
         Housie.markCell($scope.currentNumber);
     }
-
-
 });
-

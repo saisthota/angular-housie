@@ -5,25 +5,36 @@
     <title>Title</title>
 </head>
 <body>
+<div id="ticket"></div>
 <script>
     function makeTable() {
-        var arr = [
-            ["", "", "", "", ""],
-            ["", "", "", "", ""],
-            ["", "", "", "", ""]
-        ];
-        for(var i=0;i<3;i++) {
-            for(var j=0;j<5;j++) {
-                var r = Math.round(Math.random()  * (90 - 1) + 1);
-                if(!isNumberInTicket(arr, r)) {
-                    arr[i][j] = r;
-                } else {
-                    arr[i][j] = Math.round(Math.random()  * (90 - 1) + 1);
+        for(var t=0;t<6;t++) {
+            var arr = [
+                ["", "", "", "", ""],
+                ["", "", "", "", ""],
+                ["", "", "", "", ""]
+            ];
+            for(var i=0;i<3;i++) {
+                for(var j=0;j<5;j++) {
+                    var r = Math.round(Math.random()  * (90 - 1) + 1);
+                    if(!isNumberInTicket(arr, r)) {
+                        arr[i][j] = r;
+                    } else {
+                        arr[i][j] = Math.round(Math.random()  * (90 - 1) + 1);
+                    }
                 }
             }
-
+                var table = "<table border='1' style='padding:2px'>";
+                for (var i = 0; i < 3; i++) {
+                    table += "<tr>";
+                    for (var j = 0; j < 5; j++) {
+                        table += "<td id='" + i + "_block_" + j + "'>" + arr[i][j] + "</td>";
+                    }
+                    table += "</tr>";
+                }
+                table += "</table>";
+            document.getElementById("ticket").innerHTML += table;
         }
-        
     }
 
     function isNumberInTicket(arr, n) {
@@ -37,8 +48,9 @@
             }
         }
     }
-
     makeTable();
+
 </script>
+
 </body>
 </html>

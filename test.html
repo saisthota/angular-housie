@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function makeTable() {
+        var arr = [
+            ["", "", "", "", ""],
+            ["", "", "", "", ""],
+            ["", "", "", "", ""]
+        ];
+        for(var i=0;i<3;i++) {
+            for(var j=0;j<5;j++) {
+                arr[i][j] = Math.round(Math.random()  * (90 - 1) + 1);
+            }
+
+        }
+
+
+        console.log(arr);
+    }
+
+    makeTable();
+</script>
+</body>
+</html>

@@ -55,6 +55,51 @@ app.service('Housie', function() {
             this.testFn();
             return;
         }
+
+    this.generateTickets = function() {
+        var tickets = "";
+        for(var t=0;t<6;t++) {
+            var arr = [
+                ["", "", "", "", ""],
+                ["", "", "", "", ""],
+                ["", "", "", "", ""]
+            ];
+            for(var i=0;i<3;i++) {
+                for(var j=0;j<5;j++) {
+                    var r = Math.round(Math.random()  * (90 - 1) + 1);
+                    debugger;
+                    if(!this.isNumberInTicket(arr, r)) {
+                        arr[i][j] = r;
+                    } else {
+                        arr[i][j] = Math.round(Math.random()  * (90 - 1) + 1);
+                    }
+                }
+            }
+            var table = "<table class='table table-bordered>";
+            for (var i = 0; i < 3; i++) {
+                table += "<tr>";
+                for (var j = 0; j < 5; j++) {
+                    table += "<td id='" + i + "_block_" + j + "'>" + arr[i][j] + "</td>";
+                }
+                table += "</tr>";
+            }
+            table += "</table>";
+            tickets += table;
+        }
+        return tickets;
+    }
+
+    this.isNumberInTicket = function(arr, n) {
+        for(var i=0;i<3;i++) {
+            for(var j=0; j<5; j++) {
+                if(arr[i][j] === n) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+    }
 });
 
 
@@ -67,5 +112,11 @@ app.controller('HomeCtrl', function($scope, Housie, $sce) {
     $scope.draw = function() {
         $scope.currentNumber = Housie.drawNumber(1, 90);
         Housie.markCell($scope.currentNumber);
+    }
+});
+
+app.controller('TicketsCtrl', function($scope, Housie, $sce) {
+    $scope.init = function() {
+        $scope.tickets = $sce.trustAsHtml(Housie.generateTickets());
     }
 });

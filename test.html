@@ -14,13 +14,28 @@
         ];
         for(var i=0;i<3;i++) {
             for(var j=0;j<5;j++) {
-                arr[i][j] = Math.round(Math.random()  * (90 - 1) + 1);
+                var r = Math.round(Math.random()  * (90 - 1) + 1);
+                if(!isNumberInTicket(arr, r)) {
+                    arr[i][j] = r;
+                } else {
+                    arr[i][j] = Math.round(Math.random()  * (90 - 1) + 1);
+                }
             }
 
         }
+        
+    }
 
-
-        console.log(arr);
+    function isNumberInTicket(arr, n) {
+        for(var i=0;i<3;i++) {
+            for(var j=0; j<5; j++) {
+                if(arr[i][j] === n) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
     }
 
     makeTable();

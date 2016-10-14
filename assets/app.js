@@ -67,7 +67,7 @@ app.service('Housie', function() {
             for(var i=0;i<3;i++) {
                 for(var j=0;j<5;j++) {
                     var r = Math.round(Math.random()  * (90 - 1) + 1);
-                    debugger;
+
                     if(!this.isNumberInTicket(arr, r)) {
                         arr[i][j] = r;
                     } else {
@@ -75,17 +75,18 @@ app.service('Housie', function() {
                     }
                 }
             }
-            var table = "<table class='table table-bordered>";
+            var table = "<table class='table table-bordered' style='width:46%;margin-right:4px;float:left'>";
             for (var i = 0; i < 3; i++) {
-                table += "<tr>";
+                table += "\n\t<tr>";
                 for (var j = 0; j < 5; j++) {
-                    table += "<td id='" + i + "_block_" + j + "'>" + arr[i][j] + "</td>";
+                    table += "\n\t\t<td id='" + i + "_block_" + j + "'>" + arr[i][j] + "</td>";
                 }
-                table += "</tr>";
+                table += "\n\t</tr>";
             }
-            table += "</table>";
+            table += "\n</table>";
             tickets += table;
         }
+        console.log(tickets);
         return tickets;
     }
 

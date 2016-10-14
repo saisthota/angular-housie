@@ -45,20 +45,15 @@ app.service('Housie', function() {
             return Math.round(Math.random() * (max - min) + min);
         }
 
-        this.testFn = function() {
-            console.log("Function call test");
-        }
-
         this.markCell = function(cell) {
             var currentCell = angular.element(document.querySelector('#ele_' + cell))
             currentCell.addClass('alert alert-success');
-            this.testFn();
             return;
         }
 
     this.generateTickets = function() {
         var tickets = "";
-        for(var t=0;t<6;t++) {
+        for(var t=0;t<8;t++) {
             var arr = [
                 ["", "", "", "", ""],
                 ["", "", "", "", ""],
@@ -86,7 +81,6 @@ app.service('Housie', function() {
             table += "\n</table>";
             tickets += table;
         }
-        console.log(tickets);
         return tickets;
     }
 
